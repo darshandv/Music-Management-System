@@ -1,4 +1,0 @@
-mysql user = root
-mysql password = root
-django admin username = darshan
-django admin password = darshandjango
