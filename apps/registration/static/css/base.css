@@ -1,0 +1,26 @@
+.btn btn-default dropdown-toggle{
+  margin:auto;
+
+}
+
+.navbar {
+  height: 50px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  background: linear-gradient(#234c54, #071b1f);
+}
+
+.btn btn-default dropdown-toggle{
+  margin:auto;
+}
+
+.carousel {
+  height  : 622px;
+}
+.carousel-inner {
+  height : 100%;
+}
+
+.form-inline .btn {
+  color : rgba(255,255,255,0.7);
+  border : 1px solid rgba(255,255,255,0.7);
+}
