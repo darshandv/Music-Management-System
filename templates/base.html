@@ -1,66 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Viberr{% endblock %}</title>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block  title%}{% endblock %}</title>
+
     {% load staticfiles %}
-    <link rel="shortcut icon" type="image/png" href="{%  static 'favicon.ico' %}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-          {%block css_links%}{%endblock%}
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- <script src="{% static 'music/js/main.js' %}"></script> -->
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+      <link rel="stylesheet" href="../static/css/base.css">
+      <script src="{% static 'js/main.js' %}"></script>
 
-        <!-- Header -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'music:index' %}">Viberr</a>
-        </div>
+      {%block css_links%}{%endblock%}
 
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-            <ul class="nav navbar-nav">
-                <li class="{% block albums_active %}{% endblock %}"><a href="{% url 'music:index' %}"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp; Albums</a></li>
-                <li class="{% block songs_active %}{% endblock %}"><a href="{% url 'music:songs' 'all' %}"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp; Songs</a></li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'music:index' %}">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="q" value="{{ request.GET.q }}">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{% url 'music:create_album' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp; Add Album
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'music:logout_user' %}">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+      <a class="navbar-brand" href="{% url 'home' %}">Beats</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    </div>
-</nav>
-{% block body_block%}
-{% endblock %}
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% if user.is_authenticated%}
 
-{% block content%}
-{% endblock %}
-</body>
+        <ul class="navbar-nav mr-auto">
+
+
+       </ul>
+
+
+        <ul class="nav justify-content-end">
+          <li class="nav-item dropdown" style="margin-right:1.5rem">
+            <a class="btn btn-light"  role="button" style="margin-right:0.5rem" href="#">Albums</a>
+            <a class="btn btn-light"  role="button" style="margin-right:0.5rem" href="{% url 'management:index'%}">Playlists</a>
+            <a class="btn btn-light" role="button" style="margin-right:0.5rem" href="{% url 'management:playlist_add'%}">Add Playlist</a>
+
+          </li>
+
+          <li class="nav-item dropdown" style="margin-right:1.5rem">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="oi oi-people"></span>
+            </a>
+            <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{% url 'management:all_songs'%}" >All songs</a>
+              <a class="dropdown-item" href="#" >Favorites</a>
+
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" >Friends List</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown" style="margin-right:1.5rem">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">account_circle</i>
+            </a>
+            <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
+
+              <a class="dropdown-item" href="{%url 'home'%}">Home</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'account_logout' %}" >Logout</a>
+            </div>
+          </li>
+          {% else %}
+          <ul class="navbar-nav mr-auto">
+          </ul>
+          <form class="form-inline">
+              <a class="btn btn-outline-success"  role="button" style="margin-right:0.5rem" href="{% url 'account_login' %}">Login</a>
+              <a class="btn btn-outline-success" role="button" href="{% url 'account_signup' %}">Sign up</a>
+          </form>
+
+        </ul>
+        {% endif %}
+
+      </div>
+    </nav>
+
+
+
+    {% block body_block%}
+    {% endblock %}
+
+    {% block content%}
+    {% endblock %}
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
 </html>

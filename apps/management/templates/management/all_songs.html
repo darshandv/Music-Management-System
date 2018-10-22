@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+      <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Audio File</th>
+            <th>Favorite</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          {% for song in songs  %}
+          <tr>
+            <td>{{song.song_title}}</td>
+            <td>
+                  <a target="_blank" href="{{ song.audio_file.url }}">
+                      <button type="button" class="btn btn-success btn-xs">
+                          <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                      </button>
+                  </a>
+            </td>
+            <td>
+
+                  <a href="{% url 'management:add_favorite_song' song.id user.id %}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
+
+            </td>
+
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Add to playlist
+                </button>
+                <div class="dropdown-menu">
+                  {% for playlist in playlists  %}
+                    <a class="dropdown-item" href="{% url 'management:add_to_playlist' song.id playlist.id%}">{{playlist.title}}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+{% endblock %}
