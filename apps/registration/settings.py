@@ -63,7 +63,7 @@ SOCIALACCOUNT_EMAIL_REQUIRED = False
 SOCIALACCOUNT_QUERY_EMAIL = True
 
 #Makes user logout immediately after logout is pressed. Doesn't wait for confirmation
-ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = False
 
 
 #used to display custom signup form
