@@ -67,8 +67,9 @@ class FavoriteListView(LoginRequiredMixin,ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        playlists = Playlist.objects.filter(user = self.request.user)
-        context['playlists'] = playlists
+        user = User.objects.get(pk = self.request.user.id)
+        songs = user.songs.all()
+        context['songs'] = songs
         return context
 
 @login_required
@@ -102,6 +103,17 @@ def add_favorite_song(request, song_id, user_id):
     user.save()
 
     return HttpResponseRedirect(reverse('management:all_songs'))
+
+@login_required
+def remove_favorite(request, song_id, user_id):
+    song = get_object_or_404(Song, pk=song_id)
+    user = get_object_or_404(User, pk=user_id)
+
+    user.songs.remove(song)
+
+    user.save()
+
+    return HttpResponseRedirect(reverse('management:favorites'))
 
 
 @login_required

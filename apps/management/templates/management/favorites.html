@@ -25,7 +25,7 @@
           </td>
           <td>
 
-                <a href="{% url 'management:add_favorite_song' song.id user.id %}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
+                <a href="{% url 'management:remove_favorite' song.id user.id %}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
 
           </td>
 
