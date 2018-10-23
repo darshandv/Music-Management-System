@@ -126,3 +126,14 @@ def add_to_playlist(request, song_id, playlist_id):
     playlist.save()
 
     return HttpResponse(status=204)
+
+@login_required
+def delete_from_playlist(request, song_id, playlist_id):
+    song = get_object_or_404(Song, pk=song_id)
+    playlist = get_object_or_404(Playlist, pk=playlist_id)
+
+    playlist.songs.remove(song)
+
+    playlist.save()
+
+    return HttpResponseRedirect(reverse('management:playlist_detail',args = [playlist_id]))
