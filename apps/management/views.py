@@ -61,6 +61,15 @@ class PlaylistDetailView(LoginRequiredMixin, DetailView):
     template_name = 'management/playlist_detail.html'
     context_object_name = 'playlist'
 
+class FavoriteListView(LoginRequiredMixin,ListView):
+    model = Song
+    template_name = 'management/favorites.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        playlists = Playlist.objects.filter(user = self.request.user)
+        context['playlists'] = playlists
+        return context
 
 @login_required
 def add_favorite(request, song_id, user_id, playlist_id):
@@ -89,9 +98,10 @@ def add_favorite_song(request, song_id, user_id):
         user.songs.remove(song)
     else:
         user.songs.add(song)
+
     user.save()
 
-    return HttpResponse(status = 204)
+    return HttpResponseRedirect(reverse('management:all_songs'))
 
 
 @login_required
