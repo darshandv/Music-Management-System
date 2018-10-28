@@ -3,7 +3,7 @@
 
 
 {% block content %}
-<div class="container-fluid songs-container">
+<div class="container songs-container" style="margin-top:50px;">
 
     <div class="row">
 
@@ -13,13 +13,12 @@
                 <div class="panel-body">
                     <a href="{% url 'management:playlist_detail' playlist.id %}">
                         {% if playlist.image %}
-                            <img src="{{ playlist.image.url }}" class="img-responsive">
+                            <img src="{{ playlist.image.url }}" class="img-responsive img-thumbnail">
                         {% else %}
-                            <h3>No image to display</h3>
+                            <h4>No image to display</h3>
                         {% endif %}
                     </a>
                     <h1>{{ playlist.title }} </h1>
-                    <h2>{{ user.first_name }}</h2>
                 </div>
             </div>
         </div>
@@ -48,7 +47,7 @@
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
 
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>Title</th>
