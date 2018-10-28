@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.views.generic import (DetailView, ListView, CreateView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .models import Playlist, Song
+from .models import Playlist, Song, Album
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from .forms import (PlaylistForm, AddSongForm)
 from django.contrib.auth import get_user_model
@@ -55,11 +55,23 @@ class SongsListView(LoginRequiredMixin,ListView):
         context['playlists'] = playlists
         return context
 
+class AlbumsListView(LoginRequiredMixin,ListView):
+    model = Album
+    template_name = 'management/all_albums.html'
+    context_object_name = 'albums'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     playlists = Playlist.objects.filter(user = self.request.user)
+    #     context['playlists'] = playlists
+    #     return context
+
 
 class PlaylistDetailView(LoginRequiredMixin, DetailView):
     model = Playlist
     template_name = 'management/playlist_detail.html'
     context_object_name = 'playlist'
+
 
 class FavoriteListView(LoginRequiredMixin,ListView):
     model = Song

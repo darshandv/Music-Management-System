@@ -6,38 +6,42 @@
 
     <!-- Albums -->
     <div class="row">
-        <div class="col-sm-12">
-            <h3>{{ user.first_name }}'s Playlists</h3>
+        <div class="col-sm-12" style="margin-top:30px;">
+            <h3>Your Playlists</h3>
         </div>
         {% if playlists %}
             {% for playlist in playlists %}
-                <div class="col-sm-4 col-lg-2" style = "margin:10px;">
+                <div class="" style = "margin-left:80px;">
                     <div class="thumbnail">
-                        <a href="#">
-                            <img src="{{ playlist.image.url }}" style="width:15em; height:15em;">
-                        </a>
-                        <div class="caption">
-                            <h2>{{ playlist.title }}</h2>
+                            <div class="shadow">
+                                <div class="card dv-shadow" style="margin: 10px 0px 10px 0px;">
+                                        <img src="{{playlist.image.url}}" alt="Playlist image" class="text-centre rounded img-thumbnail dv-img">
+                                        <div class="card-body">
+                                          <h5 class="card-title">{{playlist.title}}</h5>
+                                          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                                          
 
+                                          <!-- View Details -->
+                                        <a href="{%url 'management:playlist_detail' playlist.id%}" class="btn btn-primary btn-sm" role="button">View Details</a>
 
-                            <!-- View Details -->
-                            <a href="{%url 'management:playlist_detail' playlist.id%}" class="btn btn-primary btn-sm" role="button">View Details</a>
+                                        <!-- Delete Album -->
+                                        <form action="#" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="album_id" value="{{ playlist.id }}" />
+                                            <button type="submit" class="btn btn-default btn-sm">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </form>
 
-                            <!-- Delete Album -->
-                            <form action="#" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <input type="hidden" name="album_id" value="{{ playlist.id }}" />
-                                <button type="submit" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </button>
-                            </form>
+                                        <!-- Favorite Album -->
+                                        <a href="#" class="btn btn-default btn-sm btn-favorite" role="button">
+                                            <span class="glyphicon glyphicon-star {% if playlist.is_favorite %}active{% endif %}"></span>
+                                        </a>
+                                        </div>
+                                </div>
+                            </div> 
 
-                            <!-- Favorite Album -->
-                            <a href="#" class="btn btn-default btn-sm btn-favorite" role="button">
-                                <span class="glyphicon glyphicon-star {% if playlist.is_favorite %}active{% endif %}"></span>
-                            </a>
-
-                        </div>
+                       
                     </div>
                 </div>
                 {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}

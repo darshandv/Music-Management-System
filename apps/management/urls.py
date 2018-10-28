@@ -15,4 +15,5 @@ url(r'^favorites', views.FavoriteListView.as_view(), name = 'favorites'),
 url(r'^remove_favorite/(?P<song_id>\d+)/(?P<user_id>\d+)/', views.remove_favorite, name = 'remove_favorite'),
 url(r'^delete_from_playlist/(?P<song_id>\d+)/(?P<playlist_id>\d+)/', views.delete_from_playlist, name = 'delete_from_playlist'),
 url(r'^addtoplaylist/(?P<song_id>\d+)/(?P<playlist_id>\d+)/', views.add_to_playlist, name = 'add_to_playlist'),
+url(r'^allalbums/', views.AlbumsListView.as_view(), name = 'all_albums'),
 ]
