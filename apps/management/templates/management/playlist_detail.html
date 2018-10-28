@@ -72,13 +72,7 @@
                                     <a href="{% url 'management:add_favorite' song.id user.id playlist.id%}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
                                 </td>
                                 <td>
-                                    <form action="#" method="post" style="display: inline;">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="song_id" value="{{ song.id }}" />
-                                        <button type="submit" class="btn btn-danger btn-xs">
-                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
-                                        </button>
-                                    </form>
+                                  <a href="{% url 'management:delete_from_playlist' song.id playlist.id%}" class="btn btn-danger" role = "button">Delete </a>
                                 </td>
                             </tr>
                         {% endfor %}
