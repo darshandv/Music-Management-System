@@ -12,4 +12,5 @@ url(r'^favorite/(?P<song_id>\d+)/(?P<user_id>\d+)/(?P<playlist_id>\d+)/', views.
 url(r'^favorite/(?P<song_id>\d+)/(?P<user_id>\d+)/', views.add_favorite_song, name = 'add_favorite_song'),
 url(r'^allsongs', views.SongsListView.as_view(), name = 'all_songs'),
 url(r'^addtoplaylist/(?P<song_id>\d+)/(?P<playlist_id>\d+)/', views.add_to_playlist, name = 'add_to_playlist'),
+url(r'^allalbums/', views.AlbumsListView.as_view(), name = 'all_albums'),
 ]

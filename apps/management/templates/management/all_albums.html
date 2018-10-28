@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style>
+
+.dv-img{
+    height: 250px;
+    width : 250px;
+}
+
+.dv-shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#foreground{
+    margin-top: 20px;
+}
+
+</style>
+<div id="background">
+<div class="container" id="foreground">
+    <div class="row">
+
+            {% if albums %}
+            {% for album in albums %}
+            <div class="shadow">
+                <div class="card dv-shadow" style="margin: 10px 10px 10px 0px;">
+                        <img src="{{album.image.url}}" alt="Album image" class="text-centre rounded img-thumbnail dv-img">
+                        <div class="card-body">
+                          <h5 class="card-title">{{album.name}}</h5>
+                          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                          <a href="#" class="btn btn-primary">Details</a>
+                        </div>
+                </div>
+            </div> 
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+</div>
+{% endblock %}

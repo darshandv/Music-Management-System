@@ -37,7 +37,7 @@ class Album(models.Model):
 
 
 class Song(models.Model):
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE,related_name='songs')
     song_title = models.CharField(max_length=250)
     audio_file = models.FileField()
     part_of_playlist = models.ManyToManyField(Playlist, blank = True, related_name = 'songs')
