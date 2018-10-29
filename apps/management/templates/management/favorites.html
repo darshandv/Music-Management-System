@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="container">
+
+    <div class="row">
+        <div class="" style=" margin:auto;margin-top:20px;">
+            <h1 style="color:brown"><strong><strong>Favourites</strong></strong></h1>
+        </div>
+    </div>
+    <hr style="height:2px">
     <table class="table">
       <thead>
       <tr>
@@ -18,7 +25,7 @@
           <td>{{song.song_title}}</td>
           <td>
                 <a target="_blank" href="{{ song.audio_file.url }}">
-                    <button type="button" class="btn btn-success btn-xs">
+                    <button type="button" class="btn btn-outline-success btn-xs">
                         <span class="glyphicon glyphicon-play"></span>&nbsp; Play
                     </button>
                 </a>
@@ -31,7 +38,7 @@
 
           <td>
             <div class="btn-group">
-              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-outline-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add to playlist
               </button>
               <div class="dropdown-menu">
