@@ -15,7 +15,7 @@
                         {% if album.image %}
                             <img src="{{ album.image.url }}" class="img-responsive img-thumbnail">
                         {% else %}
-                            <h4>No image to display</h3>
+                            <h4>No image to display</h4>
                         {% endif %}
                     </a>
                     <br><br>
@@ -53,7 +53,6 @@
                         <tr>
                             <th>Title</th>
                             <th>Audio File</th>
-                            <th>Favorite</th>
                             <th>Release Date</th>
                         </tr>
                         </thead>
@@ -62,15 +61,11 @@
                             <tr>
                                 <td>{{ song.song_title }}</td>
                                 <td>
-                                    <a target="_blank" href="{{ song.audio_file.url }}">
-                                        <button type="button" class="btn btn-success btn-xs">
-                                            <span class="glyphicon glyphicon-play"></span>&nbsp; Play
-                                        </button>
+                                    <a target="_blank" href="{{ song.audio_file.url }}" role="button" class="btn btn-success">
+                                      Play
                                     </a>
                                 </td>
-                                <td>
                                     <!-- <a href="{% url 'management:add_favorite' song.id user.id album.id%}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a> -->
-                                </td>
                                 <td>{{album.release_date}}
                                   <!-- <a href="{% url 'management:delete_from_playlist' song.id album.id%}" class="btn btn-danger" role = "button">Delete </a> -->
                                 </td>
