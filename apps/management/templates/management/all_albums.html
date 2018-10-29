@@ -19,12 +19,13 @@
 
 </style>
 <div id="background">
-<div class="container" id="foreground">
-        <div class="row align-middle">
-                <div class="" style=" margin:auto;margin-top:30px;">
+<div class="container container-fluid" id="foreground">
+        <div class="row">
+                <div class="" style=" margin:auto;margin-top:5px;">
                     <h1><strong><strong>Albums</strong></strong></h1>
                 </div>
             </div>
+            <hr style="height:2px">
     <div class="row">
 
             {% if albums %}
@@ -35,7 +36,7 @@
                         <div class="card-body">
                           <h5 class="card-title">{{album.name}}</h5>
                           <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                          <a href="#" class="btn btn-primary">Details</a>
+                          <a href="{% url 'management:album_detail' album.id %}" class="btn btn-sm btn-primary">Details</a>
                         </div>
                 </div>
             </div> 

@@ -11,15 +11,15 @@
         <div class="col-sm-4 col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <a href="{% url 'management:playlist_detail' playlist.id %}">
-                        {% if playlist.image %}
-                            <img src="{{ playlist.image.url }}" class="img-responsive img-thumbnail">
+                    <a href="{% url 'management:album_detail' album.id %}">
+                        {% if album.image %}
+                            <img src="{{ album.image.url }}" class="img-responsive img-thumbnail">
                         {% else %}
                             <h4>No image to display</h3>
                         {% endif %}
                     </a>
                     <br><br>
-                    <h2 class="shadow">{{ playlist.title }} </h2>
+                    <h2 class="shadow">{{ album.name }} </h2>
                 </div>
             </div>
         </div>
@@ -34,19 +34,15 @@
                 <a class="btn btn-outline-primary " href="#">View All</a>
               </li> -->
               <!-- <li class="nav-item">
-                <a class="btn btn-outline-primary" href="#">Add New Song</a>
+                <a class="nav-link" href="#">Add New Song</a>
               </li> -->
 
             </ul>
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div style="float: left">
-                        <h3>Playlist Songs</h3>
-                    </div>
-                    <div>
-                        <a class="btn btn-outline-primary" style="float: right;" href="#">Add New Song</a>
-                    </div>
+
+                    <h3>Album Songs</h3>
 
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
@@ -58,11 +54,11 @@
                             <th>Title</th>
                             <th>Audio File</th>
                             <th>Favorite</th>
-                            <th>Actions</th>
+                            <th>Release Date</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for song in playlist.songs.all %}
+                        {% for song in album.songs.all %}
                             <tr>
                                 <td>{{ song.song_title }}</td>
                                 <td>
@@ -73,10 +69,10 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'management:add_favorite' song.id user.id playlist.id%}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
+                                    <!-- <a href="{% url 'management:add_favorite' song.id user.id album.id%}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a> -->
                                 </td>
-                                <td>
-                                  <a href="{% url 'management:delete_from_playlist' song.id playlist.id%}" class="btn btn-danger" role = "button">Delete </a>
+                                <td>{{album.release_date}}
+                                  <!-- <a href="{% url 'management:delete_from_playlist' song.id album.id%}" class="btn btn-danger" role = "button">Delete </a> -->
                                 </td>
                             </tr>
                         {% endfor %}

@@ -60,17 +60,17 @@ class AlbumsListView(LoginRequiredMixin,ListView):
     template_name = 'management/all_albums.html'
     context_object_name = 'albums'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     playlists = Playlist.objects.filter(user = self.request.user)
-    #     context['playlists'] = playlists
-    #     return context
 
 
 class PlaylistDetailView(LoginRequiredMixin, DetailView):
     model = Playlist
     template_name = 'management/playlist_detail.html'
     context_object_name = 'playlist'
+
+class AlbumDetailView(LoginRequiredMixin, DetailView):
+    model = Album
+    template_name = 'management/album_detail.html'
+    context_object_name = 'album'
 
 
 class FavoriteListView(LoginRequiredMixin,ListView):

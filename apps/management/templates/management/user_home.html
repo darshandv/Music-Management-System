@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<div class="albums-container container-fluid">
+<div class="container container-fluid">
 
     <!-- Albums -->
     <div class="row align-middle">
@@ -10,15 +10,15 @@
             <h1><strong><strong> Playlists</strong></strong></h1>
         </div>
     </div>
-    <br>
+    <hr style="height:2px;color: #f29843;border: black">
     <div class="row">
         
         {% if playlists %}
             {% for playlist in playlists %}
-                <div class="" style = "margin-left:80px;">
+                <div class="" style = "margin-left:0px;">
                     <div class="thumbnail">
                             <div class="shadow">
-                                <div class="card dv-shadow" style="margin: 10px 0px 10px 0px;">
+                                <div class="card dv-shadow" style="margin: 10px 30px 10px 0px;">
                                         <img src="{{playlist.image.url}}" alt="Playlist image" class="text-centre rounded img-thumbnail dv-img">
                                         <div class="card-body">
                                           <h5 class="card-title">{{playlist.title}}</h5>
