@@ -1,0 +1,8 @@
+
+<li class="nav-item">
+  <form class="form-inline my-2 my-lg-0" action="{% url 'search:song_search' %}">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q" aria-label="Search" required>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</li>

@@ -14,7 +14,7 @@
         rel="stylesheet">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
       <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet"> 
+      <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
       <link rel="stylesheet" href="../static/css/base.css">
       <script src="{% static 'js/main.js' %}"></script>
@@ -22,7 +22,7 @@
       {%block css_links%}{%endblock%}
 
       <style>
-      
+
       .dv-a{
         color: white;
       }
@@ -42,7 +42,7 @@
       body{
         font-family: 'Poppins';
       }
-      
+
       </style>
 
   </head>
@@ -57,12 +57,9 @@
         {% if user.is_authenticated%}
 
         <ul class="navbar-nav ml-auto">
-
-
-       <!-- </ul>
-
-
-        <ul class="nav justify-content-end"> -->
+            {% include 'search/search.html'%}
+       </ul>
+        <ul class="nav justify-content-end">
           <li class="nav-item" style="margin-right:1rem">
             <a class="nav-link "  role="button" style="margin-right:1rem" href="{% url 'management:all_albums'%}">Albums</a>
           </li>
@@ -121,7 +118,7 @@
     {% endblock %}
 
 
-    
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<style>
+
+  body{
+    background: #fff;
+  }
+
+</style>
+
+
+  <div class="container" >
+
+      <div class="row">
+          <div class="" style=" margin:auto;margin-top:20px;">
+              <h1 style="color:brown;"><strong><strong>The resulting songs are:</strong></strong></h1>
+          </div>
+      </div>
+      <hr style="height:2px">
+
+      <table class="table table-dark" style="margin-top:20px;">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Audio File</th>
+            <th>Favorite</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          {% for song in songs  %}
+          <tr>
+            <td>{{song.song_title}}</td>
+            <td>
+                  <a target="_blank" href="{{ song.audio_file.url }}">
+                      <button type="button" class="btn btn-outline-success btn-xs">
+                         Play
+                      </button>
+                  </a>
+            </td>
+            <td>
+
+                  <a href="{% url 'management:add_favorite_song' song.id user.id %}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
+
+            </td>
+
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Add to playlist
+                </button>
+                <div class="dropdown-menu">
+                  {% for playlist in playlists  %}
+                    <a class="dropdown-item" href="{% url 'management:add_to_playlist' song.id playlist.id%}">{{playlist.title}}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          {% empty %}
+          <h1>Oops! No songs found! Please try a different keyword!</h1>
+
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+
+
+{% endblock %}

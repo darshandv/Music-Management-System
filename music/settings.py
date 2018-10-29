@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.registration',
     'apps.album',
     'apps.management',
+    'apps.search',
 ] + ALLAUTH_INSTALLED_APPS
 
 

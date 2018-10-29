@@ -23,6 +23,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^management/', include('apps.management.urls')),
+    url(r'^search/', include('apps.search.urls')),
     url(r'^accounts/', include('apps.registration.urls')),
     url(r'^$', views.HomeView.as_view(), name='home'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
