@@ -74,6 +74,14 @@ class PlaylistDetailView(LoginRequiredMixin, DetailView):
     template_name = 'management/playlist_detail.html'
     context_object_name = 'playlist'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        new_songs = Song.objects.exclude(part_of_playlist = self.get_object())
+        context['new_songs'] = new_songs
+        return context
+
+
+
 class AlbumDetailView(LoginRequiredMixin, DetailView):
     model = Album
     template_name = 'management/album_detail.html'
