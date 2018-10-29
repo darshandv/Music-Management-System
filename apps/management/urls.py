@@ -17,4 +17,5 @@ url(r'^delete_from_playlist/(?P<song_id>\d+)/(?P<playlist_id>\d+)/', views.delet
 url(r'^addtoplaylist/(?P<song_id>\d+)/(?P<playlist_id>\d+)/', views.add_to_playlist, name = 'add_to_playlist'),
 url(r'^allalbums/', views.AlbumsListView.as_view(), name = 'all_albums'),
 url(r'^album/(?P<pk>\d+)/', views.AlbumDetailView.as_view(), name = 'album_detail'),
+url(r'^deleteplaylist/(?P<pk>\d+)/', views.PlaylistDeleteView.as_view(), name = 'delete_playlist'),
 ]

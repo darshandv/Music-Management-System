@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from django.urls import reverse
-from django.views.generic import (DetailView, ListView, CreateView)
+from django.urls import reverse_lazy
+from django.views.generic import (DetailView, ListView, CreateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import Playlist, Song, Album
@@ -39,6 +39,13 @@ class PlaylistCreateView(LoginRequiredMixin,CreateView):
         initial['user'] = self.request.user
 
         return initial
+
+class  PlaylistDeleteView(LoginRequiredMixin,DeleteView):
+    model = Playlist
+    success_url = reverse_lazy('management:index')
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
 
 class AddSongView(LoginRequiredMixin,CreateView):
     model = Song
