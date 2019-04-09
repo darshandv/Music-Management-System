@@ -33,21 +33,31 @@
           {% for song in songs  %}
           <tr>
             <td>{{song.song_title}}</td>
-            <td>
+            <td>  {%if paid %}
                   <a target="_blank" href="{{ song.audio_file.url }}">
                       <button type="button" class="btn btn-outline-success btn-xs">
                           <span class="glyphicon glyphicon-play"></span>&nbsp; Play
                       </button>
                   </a>
+                  {%else%}
+                  <a target="_blank" onclick='alert("Please subscribe to play")'>
+                      <button type="button" class="btn btn-outline-success btn-xs">
+                          <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                      </button>
+                  </a>
+                  {%endif%}
             </td>
             <td>
-
+                {%if paid%}
                   <a href="{% url 'management:add_favorite_song' song.id user.id %}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
-
+                {%else%}
+                  <a onclick='alert("Please subscribe to add favorites")' class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
+                {%endif%}
             </td>
 
             <td>
               <div class="btn-group">
+                {% if platinum %}
                 <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Add to playlist
                 </button>
@@ -56,6 +66,14 @@
                     <a class="dropdown-item" href="{% url 'management:add_to_playlist' song.id playlist.id%}">{{playlist.title}}</a>
                   {% endfor %}
                 </div>
+                {%else%}
+                <a target="_blank" onclick='alert("Please get platinum pack")'>
+                  <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Add to playlist
+                  </button>
+                </a>
+                {%endif%}
+
               </div>
             </td>
           </tr>

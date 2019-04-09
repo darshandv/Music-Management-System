@@ -96,36 +96,53 @@
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
 
-                    <table class="table table-striped">
-                        <thead>
+                    <table class="table table-dark" style="margin-top:20px;">
+                      <thead>
+                      <tr>
+                          <th>Title</th>
+                          <th>Audio File</th>
+                          <th>Favorite</th>
+                          <th>Actions</th>
+                      </tr>
+                      </thead>
+
+                      <tbody>
+                        {% for song in songs  %}
                         <tr>
-                            <th>Title</th>
-                            <th>Audio File</th>
-                            <th>Favorite</th>
-                            <th>Actions</th>
+                          <td>{{song.song_title}}</td>
+                          <td>  {%if paid %}
+                                <a target="_blank" href="{{ song.audio_file.url }}">
+                                    <button type="button" class="btn btn-outline-success btn-xs">
+                                        <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                                    </button>
+                                </a>
+                                {%else%}
+                                <a target="_blank" onclick='alert("Please subscribe to play")'>
+                                    <button type="button" class="btn btn-outline-success btn-xs">
+                                        <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                                    </button>
+                                </a>
+                                {%endif%}
+                          </td>
+                          <td>
+                              {%if paid%}
+                                <a href="{% url 'management:add_favorite_song' song.id user.id %}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
+                              {%else%}
+                                <a onclick='alert("Please subscribe to add favorites")' class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
+                              {%endif%}
+                          </td>
+                            <td>
+                              <a href="{% url 'management:delete_from_playlist' song.id playlist.id%}" class="btn btn-danger" role = "button">Delete </a>
+                            </td>
+                          <td>
+
+                          </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        {% for song in playlist.songs.all %}
-                            <tr>
-                                <td>{{ song.song_title }}</td>
-                                <td>
-                                    <a target="_blank" href="{{ song.audio_file.url }}">
-                                        <button type="button" class="btn btn-success btn-xs">
-                                            <span class="glyphicon glyphicon-play"></span>&nbsp; Play
-                                        </button>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{% url 'management:add_favorite' song.id user.id playlist.id%}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
-                                </td>
-                                <td>
-                                  <a href="{% url 'management:delete_from_playlist' song.id playlist.id%}" class="btn btn-danger" role = "button">Delete </a>
-                                </td>
-                            </tr>
                         {% endfor %}
-                        </tbody>
+                      </tbody>
                     </table>
+
+
 
                 </div>
             </div>
@@ -146,3 +163,34 @@
 
 
 {% endblock %}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Audio File</th>
+        <th>Favorite</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for song in playlist.songs.all %}
+        <tr>
+            <td>{{ song.song_title }}</td>
+            <td>
+                <a target="_blank" href="{{ song.audio_file.url }}">
+                    <button type="button" class="btn btn-success btn-xs">
+                        <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                    </button>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'management:add_favorite' song.id user.id playlist.id%}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a>
+            </td>
+            <td>
+              <a href="{% url 'management:delete_from_playlist' song.id playlist.id%}" class="btn btn-danger" role = "button">Delete </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

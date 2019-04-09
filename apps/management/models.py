@@ -4,11 +4,16 @@ from django.urls import reverse
 
 User = get_user_model()
 
+
+
 # Create your models here.
 
 class Artist(models.Model):
     name = models.CharField(max_length=30)
     image = models.ImageField(upload_to = 'artist_images')
+
+
+
 
     def __str__(self):
         return self.name

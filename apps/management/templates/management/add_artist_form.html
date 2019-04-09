@@ -2,15 +2,6 @@
 
 {% block content %}
 <div class="container">
-
-  {% if not platinum %}
-    <hr>
-    <hr>
-    <h2>Only Platinum users can add Playlists</h2>
-    <hr>
-    <hr>
-  {%else%}
-
    <div class="jumbotron">
      <form class=""  method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -21,8 +12,6 @@
         <button type="submit" class="btn btn-primary" name="button">Save</button>
      </form>
    </div>
-
-   {%endif%}
 </div>
 
 

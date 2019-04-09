@@ -11,8 +11,13 @@
         </div>
     </div>
     <hr style="height:2px;color: #f29843;border: black">
+
+    {% if not platinum %}
+      <h2>Only Platinum users can add Playlists</h2>
+    {%else%}
+
     <div class="row">
-        
+
         {% if playlists %}
             {% for playlist in playlists %}
                 <div class="" style = "margin-left:0px;">
@@ -45,9 +50,11 @@
                 {% cycle '' '' '' '' '' '<div class="clearfix visible-lg"></div>' %}
             {% endfor %}
         {% else %}
-          <a href="" role = "button" class="btn btn-danger btn-lg">Add Playlist</a>
+          <a href="{%url 'management:playlist_add' %" role = "button" class="btn btn-danger btn-lg">Add Playlist</a>
         {% endif %}
     </div>
+
+    {%endif%}
 
 
 </div>

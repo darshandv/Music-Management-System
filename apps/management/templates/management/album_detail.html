@@ -60,10 +60,19 @@
                         {% for song in album.songs.all %}
                             <tr>
                                 <td>{{ song.song_title }}</td>
-                                <td>
-                                    <a target="_blank" href="{{ song.audio_file.url }}" role="button" class="btn btn-success">
-                                      Play
-                                    </a>
+                                <td>  {%if paid %}
+                                      <a target="_blank" href="{{ song.audio_file.url }}">
+                                          <button type="button" class="btn btn-outline-success btn-xs">
+                                              <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                                          </button>
+                                      </a>
+                                      {%else%}
+                                      <a target="_blank" onclick='alert("Please subscribe to play")'>
+                                          <button type="button" class="btn btn-outline-success btn-xs">
+                                              <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                                          </button>
+                                      </a>
+                                      {%endif%}
                                 </td>
                                     <!-- <a href="{% url 'management:add_favorite' song.id user.id album.id%}" class="btn-favorite"><i class=" {% if song in user.songs.all %}fas {% else %}far {%endif%} fa-star active"></i></a> -->
                                 <td>{{album.release_date}}

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+
+  body{
+    background: #fff;
+  }
+
+</style>
+
+
+  <div class="container" >
+
+      <div class="row">
+          <div class="" style=" margin:auto;margin-top:20px;">
+              <h1 style="color:brown;"><strong><strong>All Songs</strong></strong></h1>
+          </div>
+      </div>
+      <hr style="height:2px">
+
+      <table class="table table-dark" style="margin-top:20px;">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+          {% for artist in artists  %}
+          <tr>
+            <td>{{artist.name}}</td>
+            <td>
+                  <a target="_blank" href="{{ artist.image.url }}">
+                      <button type="button" class="btn btn-outline-success btn-xs">
+                          <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                      </button>
+                  </a>
+            </td>
+
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+{% endblock %}
